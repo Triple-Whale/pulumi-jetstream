@@ -1,16 +1,16 @@
 {
-    "name": "xyz",
-    "description": "A Pulumi package for creating and managing xyz cloud resources.",
+    "name": "jetstream",
+    "description": "A Pulumi package for creating and managing jetstream cloud resources.",
     "keywords": [
-        "abc",
-        "xyz",
+        "triplewhale",
+        "jetstream",
         "category/cloud"
     ],
     "homepage": "https://www.pulumi.com",
     "license": "Apache-2.0",
-    "attribution": "This Pulumi package is based on the [`xyz` Terraform Provider](https://github.com/terraform-providers/terraform-provider-xyz).",
-    "repository": "https://github.com/pulumi/pulumi-xyz",
-    "publisher": "abc",
+    "attribution": "This Pulumi package is based on the [`jetstream` Terraform Provider](https://github.com/terraform-providers/terraform-provider-jetstream).",
+    "repository": "https://github.com/Triple-Whale/pulumi-jetstream",
+    "publisher": "triplewhale",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
@@ -22,13 +22,13 @@
             "compatibility": "tfbridge20"
         },
         "go": {
-            "importBasePath": "github.com/pulumi/pulumi-xyz/sdk/go/xyz",
+            "importBasePath": "github.com/Triple-Whale/pulumi-jetstream/sdk/go/jetstream",
             "generateResourceContainerTypes": true,
             "generateExtraInputTypes": true
         },
         "nodejs": {
-            "packageDescription": "A Pulumi package for creating and managing xyz cloud resources.",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-xyz)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-xyz` repo](https://github.com/pulumi/pulumi-xyz/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-xyz` repo](https://github.com/terraform-providers/terraform-provider-xyz/issues).",
+            "packageDescription": "A Pulumi package for creating and managing jetstream cloud resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-jetstream)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-jetstream` repo](https://github.com/Triple-Whale/pulumi-jetstream/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-jetstream` repo](https://github.com/terraform-providers/terraform-provider-jetstream/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
@@ -43,17 +43,17 @@
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             },
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-xyz)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-xyz` repo](https://github.com/pulumi/pulumi-xyz/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-xyz` repo](https://github.com/terraform-providers/terraform-provider-xyz/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-jetstream)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-jetstream` repo](https://github.com/Triple-Whale/pulumi-jetstream/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-jetstream` repo](https://github.com/terraform-providers/terraform-provider-jetstream/issues).",
             "compatibility": "tfbridge20",
             "pyproject": {}
         }
     },
     "config": {},
     "provider": {
-        "description": "The provider type for the xyz package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n"
+        "description": "The provider type for the jetstream package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n"
     },
     "resources": {
-        "xyz:index/resource:Resource": {
+        "jetstream:index/resource:Resource": {
             "properties": {
                 "sampleAttribute": {
                     "type": "string",
@@ -79,7 +79,7 @@
         }
     },
     "functions": {
-        "xyz:index/getDataSource:getDataSource": {
+        "jetstream:index/getDataSource:getDataSource": {
             "inputs": {
                 "description": "A collection of arguments for invoking getDataSource.\n",
                 "properties": {
