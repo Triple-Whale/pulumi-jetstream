@@ -1,6 +1,6 @@
-# TripleWhale
+# Pulumi Jetstream Provider
 
-## terraform-provider-jetstream
+Generated using the Pulumi Terraform Bridge against [terraform-provider-jetstream](https://github.com/Triple-Whale/terraform-provider-jetstream).
 
 ### Dev
 
@@ -41,14 +41,14 @@ git push --tags
 ### Publish provider binary
 
 ```
-goreleaser build --rm-dist --skip=validate
+goreleaser build --skip=validate
 cd dist/pulumi-jetstream_darwin_amd64_v1/
-tar -zcvf pulumi-resource-jetstream-v0.0.43-darwin-arm64.tar.gz pulumi-resource-jetstream
-gsutil cp pulumi-resource-jetstream-v0.0.43-darwin-arm64.tar.gz gs://pulumi-shofifi/jetstream/
+tar -zcvf pulumi-resource-jetstream-v0.0.1-darwin-arm64.tar.gz pulumi-resource-jetstream
+gsutil cp pulumi-resource-jetstream-v0.0.1-darwin-arm64.tar.gz gs://pulumi-shofifi/jetstream/
 cd ../..
 cd dist/pulumi-jetstream_linux_amd64_v1
-tar -zcvf pulumi-resource-jetstream-v0.0.43-linux-amd64.tar.gz pulumi-resource-jetstream
-gsutil cp pulumi-resource-jetstream-v0.0.43-linux-amd64.tar.gz gs://pulumi-shofifi/jetstream/
+tar -zcvf pulumi-resource-jetstream-v0.0.1-linux-amd64.tar.gz pulumi-resource-jetstream
+gsutil cp pulumi-resource-jetstream-v0.0.1-linux-amd64.tar.gz gs://pulumi-shofifi/jetstream/
 cd ../..
 ```
 
