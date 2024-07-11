@@ -8,7 +8,7 @@
     ],
     "homepage": "https://www.pulumi.com",
     "license": "Apache-2.0",
-    "attribution": "This Pulumi package is based on the [`jetstream` Terraform Provider](https://github.com/terraform-providers/terraform-provider-jetstream).",
+    "attribution": "This Pulumi package is based on the [`jetstream` Terraform Provider](https://github.com/Triple-Whale/terraform-provider-jetstream).",
     "repository": "https://github.com/Triple-Whale/pulumi-jetstream",
     "publisher": "triplewhale",
     "meta": {
@@ -28,7 +28,7 @@
         },
         "nodejs": {
             "packageDescription": "A Pulumi package for creating and managing jetstream cloud resources.",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-jetstream)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-jetstream` repo](https://github.com/Triple-Whale/pulumi-jetstream/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-jetstream` repo](https://github.com/terraform-providers/terraform-provider-jetstream/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/Triple-Whale/terraform-provider-jetstream)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-jetstream` repo](https://github.com/Triple-Whale/pulumi-jetstream/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-jetstream` repo](https://github.com/Triple-Whale/terraform-provider-jetstream/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
@@ -43,71 +43,1405 @@
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             },
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-jetstream)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-jetstream` repo](https://github.com/Triple-Whale/pulumi-jetstream/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-jetstream` repo](https://github.com/terraform-providers/terraform-provider-jetstream/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/Triple-Whale/terraform-provider-jetstream)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-jetstream` repo](https://github.com/Triple-Whale/pulumi-jetstream/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-jetstream` repo](https://github.com/Triple-Whale/terraform-provider-jetstream/issues).",
             "compatibility": "tfbridge20",
             "pyproject": {}
         }
     },
-    "config": {},
+    "config": {
+        "variables": {
+            "credentialData": {
+                "type": "string",
+                "description": "The contents of the NATS 2.0 Credentials file to use\n"
+            },
+            "credentials": {
+                "type": "string",
+                "description": "Path to the NATS 2.0 credentials file to use for authentication\n"
+            },
+            "nkey": {
+                "type": "string",
+                "description": "Connect using a NKEY seed stored in a file\n"
+            },
+            "password": {
+                "type": "string",
+                "description": "Connect using a password\n"
+            },
+            "servers": {
+                "type": "string",
+                "description": "Comma separated list of NATS servers to connect to\n"
+            },
+            "tls": {
+                "$ref": "#/types/jetstream:config/tls:tls"
+            },
+            "user": {
+                "type": "string",
+                "description": "Connect using an username, used as token when no password is given\n"
+            }
+        },
+        "defaults": [
+            "servers"
+        ]
+    },
+    "types": {
+        "jetstream:config/tls:tls": {
+            "properties": {
+                "caFile": {
+                    "type": "string",
+                    "description": "Path to the server root CA file (in PEM format). Needed when the NATS server has TLS enabled with an unknown root CA\n"
+                },
+                "caFileData": {
+                    "type": "string",
+                    "description": "The root CA (file) content, in PEM format. Needed when the NATS server has TLS enabled with an unknown root CA\n"
+                },
+                "certFile": {
+                    "type": "string",
+                    "description": "Path to client cert file (in PEM format). Needed when NATS server is configured to verify client certificate\n"
+                },
+                "certFileData": {
+                    "type": "string",
+                    "description": "The cert file content (in PEM format). Needed when NATS server is configured to verify client certificate\n"
+                },
+                "keyFile": {
+                    "type": "string",
+                    "description": "Path to client key file (in PEM format). Needed when NATS server is configured to verify client certificate\n"
+                },
+                "keyFileData": {
+                    "type": "string",
+                    "description": "The key file content (in PEM format). Needed when NATS server is configured to verify client certificate\n"
+                }
+            },
+            "type": "object"
+        },
+        "jetstream:index/ProviderTls:ProviderTls": {
+            "properties": {
+                "caFile": {
+                    "type": "string",
+                    "description": "Path to the server root CA file (in PEM format). Needed when the NATS server has TLS enabled with an unknown root CA\n"
+                },
+                "caFileData": {
+                    "type": "string",
+                    "description": "The root CA (file) content, in PEM format. Needed when the NATS server has TLS enabled with an unknown root CA\n"
+                },
+                "certFile": {
+                    "type": "string",
+                    "description": "Path to client cert file (in PEM format). Needed when NATS server is configured to verify client certificate\n"
+                },
+                "certFileData": {
+                    "type": "string",
+                    "description": "The cert file content (in PEM format). Needed when NATS server is configured to verify client certificate\n"
+                },
+                "keyFile": {
+                    "type": "string",
+                    "description": "Path to client key file (in PEM format). Needed when NATS server is configured to verify client certificate\n"
+                },
+                "keyFileData": {
+                    "type": "string",
+                    "description": "The key file content (in PEM format). Needed when NATS server is configured to verify client certificate\n"
+                }
+            },
+            "type": "object"
+        },
+        "jetstream:index/StreamMirror:StreamMirror": {
+            "properties": {
+                "external": {
+                    "$ref": "#/types/jetstream:index/StreamMirrorExternal:StreamMirrorExternal",
+                    "description": "Streams replicated from other accounts\n"
+                },
+                "filterSubject": {
+                    "type": "string",
+                    "description": "Only copy messages matching a specific subject, not usable for mirrors\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the source Stream\n"
+                },
+                "startSeq": {
+                    "type": "integer",
+                    "description": "The sequence to start mirroring from\n"
+                },
+                "startTime": {
+                    "type": "string",
+                    "description": "The time stamp in the source stream to start from, in RFC3339 format\n"
+                },
+                "subjectTransforms": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/jetstream:index/StreamMirrorSubjectTransform:StreamMirrorSubjectTransform"
+                    },
+                    "description": "The subject filtering sources and associated destination transforms\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "jetstream:index/StreamMirrorExternal:StreamMirrorExternal": {
+            "properties": {
+                "api": {
+                    "type": "string",
+                    "description": "The subject prefix for the remote API\n"
+                },
+                "deliver": {
+                    "type": "string",
+                    "description": "The subject prefix where messages will be delivered to\n"
+                }
+            },
+            "type": "object"
+        },
+        "jetstream:index/StreamMirrorSubjectTransform:StreamMirrorSubjectTransform": {
+            "properties": {
+                "destination": {
+                    "type": "string",
+                    "description": "The subject transform destination\n"
+                },
+                "source": {
+                    "type": "string",
+                    "description": "The subject transform source\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination",
+                "source"
+            ]
+        },
+        "jetstream:index/StreamSource:StreamSource": {
+            "properties": {
+                "external": {
+                    "$ref": "#/types/jetstream:index/StreamSourceExternal:StreamSourceExternal",
+                    "description": "Streams replicated from other accounts\n"
+                },
+                "filterSubject": {
+                    "type": "string",
+                    "description": "Only copy messages matching a specific subject, not usable for mirrors\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the source Stream\n"
+                },
+                "startSeq": {
+                    "type": "integer",
+                    "description": "The sequence to start mirroring from\n"
+                },
+                "startTime": {
+                    "type": "string",
+                    "description": "The time stamp in the source stream to start from, in RFC3339 format\n"
+                },
+                "subjectTransforms": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/jetstream:index/StreamSourceSubjectTransform:StreamSourceSubjectTransform"
+                    },
+                    "description": "The subject filtering sources and associated destination transforms\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "jetstream:index/StreamSourceExternal:StreamSourceExternal": {
+            "properties": {
+                "api": {
+                    "type": "string",
+                    "description": "The subject prefix for the remote API\n"
+                },
+                "deliver": {
+                    "type": "string",
+                    "description": "The subject prefix where messages will be delivered to\n"
+                }
+            },
+            "type": "object"
+        },
+        "jetstream:index/StreamSourceSubjectTransform:StreamSourceSubjectTransform": {
+            "properties": {
+                "destination": {
+                    "type": "string",
+                    "description": "The subject transform destination\n"
+                },
+                "source": {
+                    "type": "string",
+                    "description": "The subject transform source\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination",
+                "source"
+            ]
+        },
+        "jetstream:index/StreamSubjectTransform:StreamSubjectTransform": {
+            "properties": {
+                "destination": {
+                    "type": "string",
+                    "description": "The subject transform destination\n"
+                },
+                "source": {
+                    "type": "string",
+                    "description": "The subject transform source\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination",
+                "source"
+            ]
+        }
+    },
     "provider": {
-        "description": "The provider type for the jetstream package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n"
+        "description": "The provider type for the jetstream package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "credentialData": {
+                "type": "string",
+                "description": "The contents of the NATS 2.0 Credentials file to use\n"
+            },
+            "credentials": {
+                "type": "string",
+                "description": "Path to the NATS 2.0 credentials file to use for authentication\n"
+            },
+            "nkey": {
+                "type": "string",
+                "description": "Connect using a NKEY seed stored in a file\n"
+            },
+            "password": {
+                "type": "string",
+                "description": "Connect using a password\n"
+            },
+            "servers": {
+                "type": "string",
+                "description": "Comma separated list of NATS servers to connect to\n"
+            },
+            "tls": {
+                "$ref": "#/types/jetstream:index/ProviderTls:ProviderTls"
+            },
+            "user": {
+                "type": "string",
+                "description": "Connect using an username, used as token when no password is given\n"
+            }
+        },
+        "required": [
+            "servers"
+        ],
+        "inputProperties": {
+            "credentialData": {
+                "type": "string",
+                "description": "The contents of the NATS 2.0 Credentials file to use\n"
+            },
+            "credentials": {
+                "type": "string",
+                "description": "Path to the NATS 2.0 credentials file to use for authentication\n"
+            },
+            "nkey": {
+                "type": "string",
+                "description": "Connect using a NKEY seed stored in a file\n"
+            },
+            "password": {
+                "type": "string",
+                "description": "Connect using a password\n"
+            },
+            "servers": {
+                "type": "string",
+                "description": "Comma separated list of NATS servers to connect to\n"
+            },
+            "tls": {
+                "$ref": "#/types/jetstream:index/ProviderTls:ProviderTls"
+            },
+            "user": {
+                "type": "string",
+                "description": "Connect using an username, used as token when no password is given\n"
+            }
+        },
+        "requiredInputs": [
+            "servers"
+        ]
     },
     "resources": {
-        "jetstream:index/resource:Resource": {
+        "jetstream:index/consumer:Consumer": {
             "properties": {
-                "sampleAttribute": {
+                "ackPolicy": {
                     "type": "string",
-                    "description": "Sample attribute.\n"
+                    "description": "The delivery acknowledgement policy to apply to the Consumer\n"
+                },
+                "ackWait": {
+                    "type": "integer",
+                    "description": "Number of seconds to wait for acknowledgement\n"
+                },
+                "backoffs": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "List of durations in Go format that represents a retry time scale for NaK'd messages. A list of durations in seconds.\n"
+                },
+                "deliverAll": {
+                    "type": "boolean",
+                    "description": "Starts at the first available message in the Stream\n"
+                },
+                "deliverLast": {
+                    "type": "boolean",
+                    "description": "Starts at the latest available message in the Stream\n"
+                },
+                "deliverLastPerSubject": {
+                    "type": "boolean",
+                    "description": "Starts with the last message for each subject matched by filter\n"
+                },
+                "deliverNew": {
+                    "type": "boolean",
+                    "description": "Starts with the next available message in the Stream\n"
+                },
+                "deliveryGroup": {
+                    "type": "string",
+                    "description": "When set Push consumers will only deliver messages to subscriptions with this group set\n"
+                },
+                "deliverySubject": {
+                    "type": "string",
+                    "description": "The subject where a Push-based consumer will deliver messages\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Contains additional information about this consumer\n"
+                },
+                "durableName": {
+                    "type": "string",
+                    "description": "The durable name of the Consumer\n"
+                },
+                "filterSubject": {
+                    "type": "string",
+                    "description": "Only receive a subset of messages from the Stream based on the subject they entered the Stream on\n"
+                },
+                "filterSubjects": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Only receive a subset of messages from the stream baseed on the subjects they entered the Streeam on, exlusive to\nfilter_subject and works with nats-server v2.10 or better\n"
+                },
+                "flowControl": {
+                    "type": "boolean",
+                    "description": "Enable flow control for push consumers\n"
+                },
+                "headersOnly": {
+                    "type": "boolean",
+                    "description": "When true no message bodies will be delivered only headers\n"
+                },
+                "heartbeat": {
+                    "type": "integer",
+                    "description": "Enable heartbeat messages for push consumers, duration specified in seconds\n"
+                },
+                "inactiveThreshold": {
+                    "type": "integer",
+                    "description": "Removes the consumer after a idle period, specified as a duration in seconds\n"
+                },
+                "maxAckPending": {
+                    "type": "integer",
+                    "description": "Maximum pending Acks before consumers are paused\n"
+                },
+                "maxBatch": {
+                    "type": "integer",
+                    "description": "Limits Pull Batch sizes to this maximum\n"
+                },
+                "maxBytes": {
+                    "type": "integer",
+                    "description": "The maximum bytes value that maybe set when dong a pull on a Pull Consumer\n"
+                },
+                "maxDelivery": {
+                    "type": "integer",
+                    "description": "Maximum deliveries to attempt for each message\n"
+                },
+                "maxExpires": {
+                    "type": "integer",
+                    "description": "Limits the Pull Expires duration to this maximum in seconds\n"
+                },
+                "maxWaiting": {
+                    "type": "integer",
+                    "description": "The number of pulls that can be outstanding on a pull consumer, pulls received after this is reached are ignored\n"
+                },
+                "memory": {
+                    "type": "boolean",
+                    "description": "Force the consumer state to be kept in memory rather than inherit the setting from the stream\n"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Free form metadata about the consumer\n"
+                },
+                "ratelimit": {
+                    "type": "integer",
+                    "description": "The rate limit for delivering messages to push consumers, expressed in bits per second\n"
+                },
+                "replayPolicy": {
+                    "type": "string",
+                    "description": "The rate at which messages will be replayed from the stream\n"
+                },
+                "replicas": {
+                    "type": "integer",
+                    "description": "How many replicas of the data to keep in a clustered environment\n"
+                },
+                "sampleFreq": {
+                    "type": "integer",
+                    "description": "The percentage of acknowledgements that will be sampled for observability purposes\n"
+                },
+                "startTime": {
+                    "type": "string",
+                    "description": "The timestamp of the first message that will be delivered by this Consumer\n"
+                },
+                "streamId": {
+                    "type": "string",
+                    "description": "The name of the Stream that this consumer consumes\n"
+                },
+                "streamSequence": {
+                    "type": "integer",
+                    "description": "The Stream Sequence that will be the first message delivered by this Consumer\n"
                 }
             },
+            "required": [
+                "durableName",
+                "streamId"
+            ],
             "inputProperties": {
-                "sampleAttribute": {
+                "ackPolicy": {
                     "type": "string",
-                    "description": "Sample attribute.\n"
+                    "description": "The delivery acknowledgement policy to apply to the Consumer\n",
+                    "willReplaceOnChanges": true
+                },
+                "ackWait": {
+                    "type": "integer",
+                    "description": "Number of seconds to wait for acknowledgement\n"
+                },
+                "backoffs": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "List of durations in Go format that represents a retry time scale for NaK'd messages. A list of durations in seconds.\n"
+                },
+                "deliverAll": {
+                    "type": "boolean",
+                    "description": "Starts at the first available message in the Stream\n",
+                    "willReplaceOnChanges": true
+                },
+                "deliverLast": {
+                    "type": "boolean",
+                    "description": "Starts at the latest available message in the Stream\n",
+                    "willReplaceOnChanges": true
+                },
+                "deliverLastPerSubject": {
+                    "type": "boolean",
+                    "description": "Starts with the last message for each subject matched by filter\n",
+                    "willReplaceOnChanges": true
+                },
+                "deliverNew": {
+                    "type": "boolean",
+                    "description": "Starts with the next available message in the Stream\n",
+                    "willReplaceOnChanges": true
+                },
+                "deliveryGroup": {
+                    "type": "string",
+                    "description": "When set Push consumers will only deliver messages to subscriptions with this group set\n",
+                    "willReplaceOnChanges": true
+                },
+                "deliverySubject": {
+                    "type": "string",
+                    "description": "The subject where a Push-based consumer will deliver messages\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Contains additional information about this consumer\n"
+                },
+                "durableName": {
+                    "type": "string",
+                    "description": "The durable name of the Consumer\n",
+                    "willReplaceOnChanges": true
+                },
+                "filterSubject": {
+                    "type": "string",
+                    "description": "Only receive a subset of messages from the Stream based on the subject they entered the Stream on\n"
+                },
+                "filterSubjects": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Only receive a subset of messages from the stream baseed on the subjects they entered the Streeam on, exlusive to\nfilter_subject and works with nats-server v2.10 or better\n"
+                },
+                "flowControl": {
+                    "type": "boolean",
+                    "description": "Enable flow control for push consumers\n",
+                    "willReplaceOnChanges": true
+                },
+                "headersOnly": {
+                    "type": "boolean",
+                    "description": "When true no message bodies will be delivered only headers\n"
+                },
+                "heartbeat": {
+                    "type": "integer",
+                    "description": "Enable heartbeat messages for push consumers, duration specified in seconds\n",
+                    "willReplaceOnChanges": true
+                },
+                "inactiveThreshold": {
+                    "type": "integer",
+                    "description": "Removes the consumer after a idle period, specified as a duration in seconds\n"
+                },
+                "maxAckPending": {
+                    "type": "integer",
+                    "description": "Maximum pending Acks before consumers are paused\n"
+                },
+                "maxBatch": {
+                    "type": "integer",
+                    "description": "Limits Pull Batch sizes to this maximum\n"
+                },
+                "maxBytes": {
+                    "type": "integer",
+                    "description": "The maximum bytes value that maybe set when dong a pull on a Pull Consumer\n"
+                },
+                "maxDelivery": {
+                    "type": "integer",
+                    "description": "Maximum deliveries to attempt for each message\n"
+                },
+                "maxExpires": {
+                    "type": "integer",
+                    "description": "Limits the Pull Expires duration to this maximum in seconds\n"
+                },
+                "maxWaiting": {
+                    "type": "integer",
+                    "description": "The number of pulls that can be outstanding on a pull consumer, pulls received after this is reached are ignored\n"
+                },
+                "memory": {
+                    "type": "boolean",
+                    "description": "Force the consumer state to be kept in memory rather than inherit the setting from the stream\n",
+                    "willReplaceOnChanges": true
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Free form metadata about the consumer\n"
+                },
+                "ratelimit": {
+                    "type": "integer",
+                    "description": "The rate limit for delivering messages to push consumers, expressed in bits per second\n",
+                    "willReplaceOnChanges": true
+                },
+                "replayPolicy": {
+                    "type": "string",
+                    "description": "The rate at which messages will be replayed from the stream\n",
+                    "willReplaceOnChanges": true
+                },
+                "replicas": {
+                    "type": "integer",
+                    "description": "How many replicas of the data to keep in a clustered environment\n",
+                    "willReplaceOnChanges": true
+                },
+                "sampleFreq": {
+                    "type": "integer",
+                    "description": "The percentage of acknowledgements that will be sampled for observability purposes\n"
+                },
+                "startTime": {
+                    "type": "string",
+                    "description": "The timestamp of the first message that will be delivered by this Consumer\n",
+                    "willReplaceOnChanges": true
+                },
+                "streamId": {
+                    "type": "string",
+                    "description": "The name of the Stream that this consumer consumes\n",
+                    "willReplaceOnChanges": true
+                },
+                "streamSequence": {
+                    "type": "integer",
+                    "description": "The Stream Sequence that will be the first message delivered by this Consumer\n",
+                    "willReplaceOnChanges": true
                 }
             },
+            "requiredInputs": [
+                "durableName",
+                "streamId"
+            ],
             "stateInputs": {
-                "description": "Input properties used for looking up and filtering Resource resources.\n",
+                "description": "Input properties used for looking up and filtering Consumer resources.\n",
                 "properties": {
-                    "sampleAttribute": {
+                    "ackPolicy": {
                         "type": "string",
-                        "description": "Sample attribute.\n"
+                        "description": "The delivery acknowledgement policy to apply to the Consumer\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "ackWait": {
+                        "type": "integer",
+                        "description": "Number of seconds to wait for acknowledgement\n"
+                    },
+                    "backoffs": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "List of durations in Go format that represents a retry time scale for NaK'd messages. A list of durations in seconds.\n"
+                    },
+                    "deliverAll": {
+                        "type": "boolean",
+                        "description": "Starts at the first available message in the Stream\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "deliverLast": {
+                        "type": "boolean",
+                        "description": "Starts at the latest available message in the Stream\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "deliverLastPerSubject": {
+                        "type": "boolean",
+                        "description": "Starts with the last message for each subject matched by filter\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "deliverNew": {
+                        "type": "boolean",
+                        "description": "Starts with the next available message in the Stream\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "deliveryGroup": {
+                        "type": "string",
+                        "description": "When set Push consumers will only deliver messages to subscriptions with this group set\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "deliverySubject": {
+                        "type": "string",
+                        "description": "The subject where a Push-based consumer will deliver messages\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Contains additional information about this consumer\n"
+                    },
+                    "durableName": {
+                        "type": "string",
+                        "description": "The durable name of the Consumer\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "filterSubject": {
+                        "type": "string",
+                        "description": "Only receive a subset of messages from the Stream based on the subject they entered the Stream on\n"
+                    },
+                    "filterSubjects": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Only receive a subset of messages from the stream baseed on the subjects they entered the Streeam on, exlusive to\nfilter_subject and works with nats-server v2.10 or better\n"
+                    },
+                    "flowControl": {
+                        "type": "boolean",
+                        "description": "Enable flow control for push consumers\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "headersOnly": {
+                        "type": "boolean",
+                        "description": "When true no message bodies will be delivered only headers\n"
+                    },
+                    "heartbeat": {
+                        "type": "integer",
+                        "description": "Enable heartbeat messages for push consumers, duration specified in seconds\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "inactiveThreshold": {
+                        "type": "integer",
+                        "description": "Removes the consumer after a idle period, specified as a duration in seconds\n"
+                    },
+                    "maxAckPending": {
+                        "type": "integer",
+                        "description": "Maximum pending Acks before consumers are paused\n"
+                    },
+                    "maxBatch": {
+                        "type": "integer",
+                        "description": "Limits Pull Batch sizes to this maximum\n"
+                    },
+                    "maxBytes": {
+                        "type": "integer",
+                        "description": "The maximum bytes value that maybe set when dong a pull on a Pull Consumer\n"
+                    },
+                    "maxDelivery": {
+                        "type": "integer",
+                        "description": "Maximum deliveries to attempt for each message\n"
+                    },
+                    "maxExpires": {
+                        "type": "integer",
+                        "description": "Limits the Pull Expires duration to this maximum in seconds\n"
+                    },
+                    "maxWaiting": {
+                        "type": "integer",
+                        "description": "The number of pulls that can be outstanding on a pull consumer, pulls received after this is reached are ignored\n"
+                    },
+                    "memory": {
+                        "type": "boolean",
+                        "description": "Force the consumer state to be kept in memory rather than inherit the setting from the stream\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Free form metadata about the consumer\n"
+                    },
+                    "ratelimit": {
+                        "type": "integer",
+                        "description": "The rate limit for delivering messages to push consumers, expressed in bits per second\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "replayPolicy": {
+                        "type": "string",
+                        "description": "The rate at which messages will be replayed from the stream\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "replicas": {
+                        "type": "integer",
+                        "description": "How many replicas of the data to keep in a clustered environment\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sampleFreq": {
+                        "type": "integer",
+                        "description": "The percentage of acknowledgements that will be sampled for observability purposes\n"
+                    },
+                    "startTime": {
+                        "type": "string",
+                        "description": "The timestamp of the first message that will be delivered by this Consumer\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "streamId": {
+                        "type": "string",
+                        "description": "The name of the Stream that this consumer consumes\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "streamSequence": {
+                        "type": "integer",
+                        "description": "The Stream Sequence that will be the first message delivered by this Consumer\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
             }
-        }
-    },
-    "functions": {
-        "jetstream:index/getDataSource:getDataSource": {
-            "inputs": {
-                "description": "A collection of arguments for invoking getDataSource.\n",
-                "properties": {
-                    "sampleAttribute": {
-                        "type": "string"
-                    }
+        },
+        "jetstream:index/kvBucket:KvBucket": {
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Contains additional information about this bucket\n"
                 },
-                "type": "object",
-                "required": [
-                    "sampleAttribute"
-                ]
-            },
-            "outputs": {
-                "description": "A collection of values returned by getDataSource.\n",
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                "history": {
+                    "type": "integer",
+                    "description": "How many historical values to keep\n"
+                },
+                "maxBucketSize": {
+                    "type": "integer",
+                    "description": "Maximum size of the entire bucket\n"
+                },
+                "maxValueSize": {
+                    "type": "integer",
+                    "description": "Maximum size of any value\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Bucket\n"
+                },
+                "placementCluster": {
+                    "type": "string",
+                    "description": "Place the bucket in a specific cluster, influenced by placement_tags\n"
+                },
+                "placementTags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
                     },
-                    "sampleAttribute": {
+                    "description": "Place the stream only on servers with these tags\n"
+                },
+                "replicas": {
+                    "type": "integer",
+                    "description": "Number of cluster replicas to store\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "How many seconds a value will be kept in the bucket\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Contains additional information about this bucket\n"
+                },
+                "history": {
+                    "type": "integer",
+                    "description": "How many historical values to keep\n"
+                },
+                "maxBucketSize": {
+                    "type": "integer",
+                    "description": "Maximum size of the entire bucket\n"
+                },
+                "maxValueSize": {
+                    "type": "integer",
+                    "description": "Maximum size of any value\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Bucket\n",
+                    "willReplaceOnChanges": true
+                },
+                "placementCluster": {
+                    "type": "string",
+                    "description": "Place the bucket in a specific cluster, influenced by placement_tags\n"
+                },
+                "placementTags": {
+                    "type": "array",
+                    "items": {
                         "type": "string"
+                    },
+                    "description": "Place the stream only on servers with these tags\n"
+                },
+                "replicas": {
+                    "type": "integer",
+                    "description": "Number of cluster replicas to store\n",
+                    "willReplaceOnChanges": true
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "How many seconds a value will be kept in the bucket\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering KvBucket resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Contains additional information about this bucket\n"
+                    },
+                    "history": {
+                        "type": "integer",
+                        "description": "How many historical values to keep\n"
+                    },
+                    "maxBucketSize": {
+                        "type": "integer",
+                        "description": "Maximum size of the entire bucket\n"
+                    },
+                    "maxValueSize": {
+                        "type": "integer",
+                        "description": "Maximum size of any value\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Bucket\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "placementCluster": {
+                        "type": "string",
+                        "description": "Place the bucket in a specific cluster, influenced by placement_tags\n"
+                    },
+                    "placementTags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Place the stream only on servers with these tags\n"
+                    },
+                    "replicas": {
+                        "type": "integer",
+                        "description": "Number of cluster replicas to store\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "How many seconds a value will be kept in the bucket\n"
                     }
                 },
-                "type": "object",
-                "required": [
-                    "sampleAttribute",
-                    "id"
-                ]
+                "type": "object"
+            }
+        },
+        "jetstream:index/kvEntry:KvEntry": {
+            "properties": {
+                "bucket": {
+                    "type": "string",
+                    "description": "The name of the bucket\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key of the entry\n"
+                },
+                "revision": {
+                    "type": "integer",
+                    "description": "The revision of the entry\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value of the entry\n"
+                }
+            },
+            "required": [
+                "bucket",
+                "key",
+                "revision",
+                "value"
+            ],
+            "inputProperties": {
+                "bucket": {
+                    "type": "string",
+                    "description": "The name of the bucket\n",
+                    "willReplaceOnChanges": true
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key of the entry\n",
+                    "willReplaceOnChanges": true
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value of the entry\n"
+                }
+            },
+            "requiredInputs": [
+                "bucket",
+                "key",
+                "value"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering KvEntry resources.\n",
+                "properties": {
+                    "bucket": {
+                        "type": "string",
+                        "description": "The name of the bucket\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "The key of the entry\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "revision": {
+                        "type": "integer",
+                        "description": "The revision of the entry\n"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The value of the entry\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "jetstream:index/stream:Stream": {
+            "properties": {
+                "ack": {
+                    "type": "boolean",
+                    "description": "If the Stream should support confirming receiving messages via acknowledgements\n"
+                },
+                "allowDirect": {
+                    "type": "boolean",
+                    "description": "Allow higher performance, direct access to get individual messages via the $JS.DS.GET API\n"
+                },
+                "allowRollupHdrs": {
+                    "type": "boolean",
+                    "description": "Allows the use of the Nats-Rollup header to replace all contents of a stream, or subject in a stream, with a single new\nmessage\n"
+                },
+                "compression": {
+                    "type": "string",
+                    "description": "Optional compression algorithm used for the Stream\n"
+                },
+                "denyDelete": {
+                    "type": "boolean",
+                    "description": "Restricts the ability to delete messages from a stream via the API. Cannot be changed once set to true\n"
+                },
+                "denyPurge": {
+                    "type": "boolean",
+                    "description": "Restricts the ability to purge messages from a stream via the API. Cannot be change once set to true\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Contains additional information about this stream\n"
+                },
+                "discard": {
+                    "type": "string",
+                    "description": "When a Stream reach it's limits either old messages are deleted or new ones are denied\n"
+                },
+                "discardNewPerSubject": {
+                    "type": "boolean",
+                    "description": "When discard policy is new and the stream is one with max messages per subject set, this will apply the new behavior to\nevery subject. Essentially turning discard new from maximum number of subjects into maximum number of messages in a\nsubject\n"
+                },
+                "duplicateWindow": {
+                    "type": "integer",
+                    "description": "The size of the duplicate tracking windows, duration specified in seconds\n"
+                },
+                "maxAge": {
+                    "type": "integer",
+                    "description": "The maximum oldest message that can be kept in the stream, duration specified in seconds\n"
+                },
+                "maxBytes": {
+                    "type": "integer",
+                    "description": "The maximum size of all messages that can be kept in the stream\n"
+                },
+                "maxConsumers": {
+                    "type": "integer",
+                    "description": "Number of consumers this stream allows\n"
+                },
+                "maxMsgSize": {
+                    "type": "integer",
+                    "description": "The maximum individual message size that the stream will accept\n"
+                },
+                "maxMsgs": {
+                    "type": "integer",
+                    "description": "The maximum amount of messages that can be kept in the stream\n"
+                },
+                "maxMsgsPerSubject": {
+                    "type": "integer",
+                    "description": "The maximum amount of messages that can be kept in the stream on a per-subject basis\n"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Free form metadata about the stream\n"
+                },
+                "mirror": {
+                    "$ref": "#/types/jetstream:index/StreamMirror:StreamMirror",
+                    "description": "Specifies a remote stream to mirror into this one\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the stream\n"
+                },
+                "placementCluster": {
+                    "type": "string",
+                    "description": "Place the stream in a specific cluster, influenced by placement_tags\n"
+                },
+                "placementTags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Place the stream only on servers with these tags\n"
+                },
+                "replicas": {
+                    "type": "integer",
+                    "description": "How many replicas of the data to keep in a clustered environment\n"
+                },
+                "republishDestination": {
+                    "type": "string",
+                    "description": "The destination to publish messages to\n"
+                },
+                "republishHeadersOnly": {
+                    "type": "boolean",
+                    "description": "Republish only message headers, no bodies\n"
+                },
+                "republishSource": {
+                    "type": "string",
+                    "description": "Republish messages to republish_destination\n"
+                },
+                "retention": {
+                    "type": "string",
+                    "description": "The retention policy to apply over and above max_msgs, max_bytes and max_age\n"
+                },
+                "sources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/jetstream:index/StreamSource:StreamSource"
+                    },
+                    "description": "Specifies a list of streams to source into this one\n"
+                },
+                "storage": {
+                    "type": "string",
+                    "description": "The storage engine to use to back the stream\n"
+                },
+                "subjectTransform": {
+                    "$ref": "#/types/jetstream:index/StreamSubjectTransform:StreamSubjectTransform",
+                    "description": "Subject transform to apply to matching messages\n"
+                },
+                "subjects": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of subjects that will be consumed by the Stream, may be empty when sources and mirrors are present\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "ack": {
+                    "type": "boolean",
+                    "description": "If the Stream should support confirming receiving messages via acknowledgements\n"
+                },
+                "allowDirect": {
+                    "type": "boolean",
+                    "description": "Allow higher performance, direct access to get individual messages via the $JS.DS.GET API\n"
+                },
+                "allowRollupHdrs": {
+                    "type": "boolean",
+                    "description": "Allows the use of the Nats-Rollup header to replace all contents of a stream, or subject in a stream, with a single new\nmessage\n"
+                },
+                "compression": {
+                    "type": "string",
+                    "description": "Optional compression algorithm used for the Stream\n"
+                },
+                "denyDelete": {
+                    "type": "boolean",
+                    "description": "Restricts the ability to delete messages from a stream via the API. Cannot be changed once set to true\n"
+                },
+                "denyPurge": {
+                    "type": "boolean",
+                    "description": "Restricts the ability to purge messages from a stream via the API. Cannot be change once set to true\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Contains additional information about this stream\n"
+                },
+                "discard": {
+                    "type": "string",
+                    "description": "When a Stream reach it's limits either old messages are deleted or new ones are denied\n"
+                },
+                "discardNewPerSubject": {
+                    "type": "boolean",
+                    "description": "When discard policy is new and the stream is one with max messages per subject set, this will apply the new behavior to\nevery subject. Essentially turning discard new from maximum number of subjects into maximum number of messages in a\nsubject\n"
+                },
+                "duplicateWindow": {
+                    "type": "integer",
+                    "description": "The size of the duplicate tracking windows, duration specified in seconds\n"
+                },
+                "maxAge": {
+                    "type": "integer",
+                    "description": "The maximum oldest message that can be kept in the stream, duration specified in seconds\n"
+                },
+                "maxBytes": {
+                    "type": "integer",
+                    "description": "The maximum size of all messages that can be kept in the stream\n"
+                },
+                "maxConsumers": {
+                    "type": "integer",
+                    "description": "Number of consumers this stream allows\n"
+                },
+                "maxMsgSize": {
+                    "type": "integer",
+                    "description": "The maximum individual message size that the stream will accept\n"
+                },
+                "maxMsgs": {
+                    "type": "integer",
+                    "description": "The maximum amount of messages that can be kept in the stream\n"
+                },
+                "maxMsgsPerSubject": {
+                    "type": "integer",
+                    "description": "The maximum amount of messages that can be kept in the stream on a per-subject basis\n"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Free form metadata about the stream\n"
+                },
+                "mirror": {
+                    "$ref": "#/types/jetstream:index/StreamMirror:StreamMirror",
+                    "description": "Specifies a remote stream to mirror into this one\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the stream\n",
+                    "willReplaceOnChanges": true
+                },
+                "placementCluster": {
+                    "type": "string",
+                    "description": "Place the stream in a specific cluster, influenced by placement_tags\n"
+                },
+                "placementTags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Place the stream only on servers with these tags\n"
+                },
+                "replicas": {
+                    "type": "integer",
+                    "description": "How many replicas of the data to keep in a clustered environment\n"
+                },
+                "republishDestination": {
+                    "type": "string",
+                    "description": "The destination to publish messages to\n"
+                },
+                "republishHeadersOnly": {
+                    "type": "boolean",
+                    "description": "Republish only message headers, no bodies\n"
+                },
+                "republishSource": {
+                    "type": "string",
+                    "description": "Republish messages to republish_destination\n"
+                },
+                "retention": {
+                    "type": "string",
+                    "description": "The retention policy to apply over and above max_msgs, max_bytes and max_age\n"
+                },
+                "sources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/jetstream:index/StreamSource:StreamSource"
+                    },
+                    "description": "Specifies a list of streams to source into this one\n"
+                },
+                "storage": {
+                    "type": "string",
+                    "description": "The storage engine to use to back the stream\n",
+                    "willReplaceOnChanges": true
+                },
+                "subjectTransform": {
+                    "$ref": "#/types/jetstream:index/StreamSubjectTransform:StreamSubjectTransform",
+                    "description": "Subject transform to apply to matching messages\n"
+                },
+                "subjects": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of subjects that will be consumed by the Stream, may be empty when sources and mirrors are present\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Stream resources.\n",
+                "properties": {
+                    "ack": {
+                        "type": "boolean",
+                        "description": "If the Stream should support confirming receiving messages via acknowledgements\n"
+                    },
+                    "allowDirect": {
+                        "type": "boolean",
+                        "description": "Allow higher performance, direct access to get individual messages via the $JS.DS.GET API\n"
+                    },
+                    "allowRollupHdrs": {
+                        "type": "boolean",
+                        "description": "Allows the use of the Nats-Rollup header to replace all contents of a stream, or subject in a stream, with a single new\nmessage\n"
+                    },
+                    "compression": {
+                        "type": "string",
+                        "description": "Optional compression algorithm used for the Stream\n"
+                    },
+                    "denyDelete": {
+                        "type": "boolean",
+                        "description": "Restricts the ability to delete messages from a stream via the API. Cannot be changed once set to true\n"
+                    },
+                    "denyPurge": {
+                        "type": "boolean",
+                        "description": "Restricts the ability to purge messages from a stream via the API. Cannot be change once set to true\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Contains additional information about this stream\n"
+                    },
+                    "discard": {
+                        "type": "string",
+                        "description": "When a Stream reach it's limits either old messages are deleted or new ones are denied\n"
+                    },
+                    "discardNewPerSubject": {
+                        "type": "boolean",
+                        "description": "When discard policy is new and the stream is one with max messages per subject set, this will apply the new behavior to\nevery subject. Essentially turning discard new from maximum number of subjects into maximum number of messages in a\nsubject\n"
+                    },
+                    "duplicateWindow": {
+                        "type": "integer",
+                        "description": "The size of the duplicate tracking windows, duration specified in seconds\n"
+                    },
+                    "maxAge": {
+                        "type": "integer",
+                        "description": "The maximum oldest message that can be kept in the stream, duration specified in seconds\n"
+                    },
+                    "maxBytes": {
+                        "type": "integer",
+                        "description": "The maximum size of all messages that can be kept in the stream\n"
+                    },
+                    "maxConsumers": {
+                        "type": "integer",
+                        "description": "Number of consumers this stream allows\n"
+                    },
+                    "maxMsgSize": {
+                        "type": "integer",
+                        "description": "The maximum individual message size that the stream will accept\n"
+                    },
+                    "maxMsgs": {
+                        "type": "integer",
+                        "description": "The maximum amount of messages that can be kept in the stream\n"
+                    },
+                    "maxMsgsPerSubject": {
+                        "type": "integer",
+                        "description": "The maximum amount of messages that can be kept in the stream on a per-subject basis\n"
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Free form metadata about the stream\n"
+                    },
+                    "mirror": {
+                        "$ref": "#/types/jetstream:index/StreamMirror:StreamMirror",
+                        "description": "Specifies a remote stream to mirror into this one\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the stream\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "placementCluster": {
+                        "type": "string",
+                        "description": "Place the stream in a specific cluster, influenced by placement_tags\n"
+                    },
+                    "placementTags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Place the stream only on servers with these tags\n"
+                    },
+                    "replicas": {
+                        "type": "integer",
+                        "description": "How many replicas of the data to keep in a clustered environment\n"
+                    },
+                    "republishDestination": {
+                        "type": "string",
+                        "description": "The destination to publish messages to\n"
+                    },
+                    "republishHeadersOnly": {
+                        "type": "boolean",
+                        "description": "Republish only message headers, no bodies\n"
+                    },
+                    "republishSource": {
+                        "type": "string",
+                        "description": "Republish messages to republish_destination\n"
+                    },
+                    "retention": {
+                        "type": "string",
+                        "description": "The retention policy to apply over and above max_msgs, max_bytes and max_age\n"
+                    },
+                    "sources": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/jetstream:index/StreamSource:StreamSource"
+                        },
+                        "description": "Specifies a list of streams to source into this one\n"
+                    },
+                    "storage": {
+                        "type": "string",
+                        "description": "The storage engine to use to back the stream\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "subjectTransform": {
+                        "$ref": "#/types/jetstream:index/StreamSubjectTransform:StreamSubjectTransform",
+                        "description": "Subject transform to apply to matching messages\n"
+                    },
+                    "subjects": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The list of subjects that will be consumed by the Stream, may be empty when sources and mirrors are present\n"
+                    }
+                },
+                "type": "object"
             }
         }
     }

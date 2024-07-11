@@ -20,12 +20,13 @@ import (
 	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
 
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
 
 	// Replace this provider with the provider you are bridging.
-	jetstream "github.com/nats-io/terraform-provider-jetstream/jetstream"
+	jetstream "github.com/Triple-Whale/terraform-provider-jetstream/jetstream"
 
 	"github.com/Triple-Whale/pulumi-jetstream/provider/pkg/version"
 )
@@ -106,7 +107,7 @@ func Provider() tfbridge.ProviderInfo {
 		// - "github.com/hashicorp/terraform-plugin-framework/provider".Provider (for plugin-framework)
 		//
 		//nolint:lll
-		P: shimv1.NewProvider(jetstream.New(version.Version)()),
+		P: shimv1.NewProvider(jetstream.Provider().(*schema.Provider)),
 
 		Name:    "jetstream",
 		Version: version.Version,
@@ -136,7 +137,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/Triple-Whale/pulumi-jetstream",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this should
 		// match the TF provider module's require directive, not any replace directives.
-		GitHubOrg:    "",
+		GitHubOrg:    "Triple-Whale",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Config:       map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if

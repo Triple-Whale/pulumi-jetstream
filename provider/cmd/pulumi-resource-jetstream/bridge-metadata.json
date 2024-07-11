@@ -1,1 +1,69 @@
-{}
+{
+    "auto-aliasing": {
+        "resources": {
+            "jetstream_consumer": {
+                "current": "jetstream:index/consumer:Consumer",
+                "fields": {
+                    "backoff": {
+                        "maxItemsOne": false
+                    },
+                    "filter_subjects": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "jetstream_kv_bucket": {
+                "current": "jetstream:index/kvBucket:KvBucket",
+                "fields": {
+                    "placement_tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "jetstream_kv_entry": {
+                "current": "jetstream:index/kvEntry:KvEntry"
+            },
+            "jetstream_stream": {
+                "current": "jetstream:index/stream:Stream",
+                "fields": {
+                    "mirror": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "external": {
+                                    "maxItemsOne": true
+                                },
+                                "subject_transform": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "placement_tags": {
+                        "maxItemsOne": false
+                    },
+                    "source": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "external": {
+                                    "maxItemsOne": true
+                                },
+                                "subject_transform": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "subject_transform": {
+                        "maxItemsOne": true
+                    },
+                    "subjects": {
+                        "maxItemsOne": false
+                    }
+                }
+            }
+        }
+    },
+    "auto-settings": {}
+}
