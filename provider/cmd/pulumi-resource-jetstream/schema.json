@@ -415,7 +415,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Only receive a subset of messages from the stream baseed on the subjects they entered the Streeam on, exlusive to\nfilter_subject and works with nats-server v2.10 or better\n"
+                    "description": "Only receive a subset of messages from the stream baseed on the subjects they entered the Streeam on, exlusive to filter_subject and works with nats-server v2.10 or better\n"
                 },
                 "flowControl": {
                     "type": "boolean",
@@ -565,7 +565,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Only receive a subset of messages from the stream baseed on the subjects they entered the Streeam on, exlusive to\nfilter_subject and works with nats-server v2.10 or better\n"
+                    "description": "Only receive a subset of messages from the stream baseed on the subjects they entered the Streeam on, exlusive to filter_subject and works with nats-server v2.10 or better\n"
                 },
                 "flowControl": {
                     "type": "boolean",
@@ -726,7 +726,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Only receive a subset of messages from the stream baseed on the subjects they entered the Streeam on, exlusive to\nfilter_subject and works with nats-server v2.10 or better\n"
+                        "description": "Only receive a subset of messages from the stream baseed on the subjects they entered the Streeam on, exlusive to filter_subject and works with nats-server v2.10 or better\n"
                     },
                     "flowControl": {
                         "type": "boolean",
@@ -1039,7 +1039,7 @@
                 },
                 "allowRollupHdrs": {
                     "type": "boolean",
-                    "description": "Allows the use of the Nats-Rollup header to replace all contents of a stream, or subject in a stream, with a single new\nmessage\n"
+                    "description": "Allows the use of the Nats-Rollup header to replace all contents of a stream, or subject in a stream, with a single new message\n"
                 },
                 "compression": {
                     "type": "string",
@@ -1063,7 +1063,7 @@
                 },
                 "discardNewPerSubject": {
                     "type": "boolean",
-                    "description": "When discard policy is new and the stream is one with max messages per subject set, this will apply the new behavior to\nevery subject. Essentially turning discard new from maximum number of subjects into maximum number of messages in a\nsubject\n"
+                    "description": "When discard policy is new and the stream is one with max messages per subject set, this will apply the new behavior to every subject. Essentially turning discard new from maximum number of subjects into maximum number of messages in a subject\n"
                 },
                 "duplicateWindow": {
                     "type": "integer",
@@ -1106,7 +1106,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the stream\n"
+                    "description": "The name of the source Stream\n"
                 },
                 "placementCluster": {
                     "type": "string",
@@ -1137,14 +1137,14 @@
                 },
                 "retention": {
                     "type": "string",
-                    "description": "The retention policy to apply over and above max_msgs, max_bytes and max_age\n"
+                    "description": "The retention policy to apply over and above max*msgs, max*bytes and max_age\n"
                 },
                 "sources": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/jetstream:index/StreamSource:StreamSource"
                     },
-                    "description": "Specifies a list of streams to source into this one\n"
+                    "description": "The subject transform source\n"
                 },
                 "storage": {
                     "type": "string",
@@ -1152,7 +1152,7 @@
                 },
                 "subjectTransform": {
                     "$ref": "#/types/jetstream:index/StreamSubjectTransform:StreamSubjectTransform",
-                    "description": "Subject transform to apply to matching messages\n"
+                    "description": "The subject filtering sources and associated destination transforms\n"
                 },
                 "subjects": {
                     "type": "array",
@@ -1176,7 +1176,7 @@
                 },
                 "allowRollupHdrs": {
                     "type": "boolean",
-                    "description": "Allows the use of the Nats-Rollup header to replace all contents of a stream, or subject in a stream, with a single new\nmessage\n"
+                    "description": "Allows the use of the Nats-Rollup header to replace all contents of a stream, or subject in a stream, with a single new message\n"
                 },
                 "compression": {
                     "type": "string",
@@ -1200,7 +1200,7 @@
                 },
                 "discardNewPerSubject": {
                     "type": "boolean",
-                    "description": "When discard policy is new and the stream is one with max messages per subject set, this will apply the new behavior to\nevery subject. Essentially turning discard new from maximum number of subjects into maximum number of messages in a\nsubject\n"
+                    "description": "When discard policy is new and the stream is one with max messages per subject set, this will apply the new behavior to every subject. Essentially turning discard new from maximum number of subjects into maximum number of messages in a subject\n"
                 },
                 "duplicateWindow": {
                     "type": "integer",
@@ -1244,7 +1244,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the stream\n",
+                    "description": "The name of the source Stream\n",
                     "willReplaceOnChanges": true
                 },
                 "placementCluster": {
@@ -1276,14 +1276,14 @@
                 },
                 "retention": {
                     "type": "string",
-                    "description": "The retention policy to apply over and above max_msgs, max_bytes and max_age\n"
+                    "description": "The retention policy to apply over and above max*msgs, max*bytes and max_age\n"
                 },
                 "sources": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/jetstream:index/StreamSource:StreamSource"
                     },
-                    "description": "Specifies a list of streams to source into this one\n"
+                    "description": "The subject transform source\n"
                 },
                 "storage": {
                     "type": "string",
@@ -1292,7 +1292,7 @@
                 },
                 "subjectTransform": {
                     "$ref": "#/types/jetstream:index/StreamSubjectTransform:StreamSubjectTransform",
-                    "description": "Subject transform to apply to matching messages\n"
+                    "description": "The subject filtering sources and associated destination transforms\n"
                 },
                 "subjects": {
                     "type": "array",
@@ -1315,7 +1315,7 @@
                     },
                     "allowRollupHdrs": {
                         "type": "boolean",
-                        "description": "Allows the use of the Nats-Rollup header to replace all contents of a stream, or subject in a stream, with a single new\nmessage\n"
+                        "description": "Allows the use of the Nats-Rollup header to replace all contents of a stream, or subject in a stream, with a single new message\n"
                     },
                     "compression": {
                         "type": "string",
@@ -1339,7 +1339,7 @@
                     },
                     "discardNewPerSubject": {
                         "type": "boolean",
-                        "description": "When discard policy is new and the stream is one with max messages per subject set, this will apply the new behavior to\nevery subject. Essentially turning discard new from maximum number of subjects into maximum number of messages in a\nsubject\n"
+                        "description": "When discard policy is new and the stream is one with max messages per subject set, this will apply the new behavior to every subject. Essentially turning discard new from maximum number of subjects into maximum number of messages in a subject\n"
                     },
                     "duplicateWindow": {
                         "type": "integer",
@@ -1383,7 +1383,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the stream\n",
+                        "description": "The name of the source Stream\n",
                         "willReplaceOnChanges": true
                     },
                     "placementCluster": {
@@ -1415,14 +1415,14 @@
                     },
                     "retention": {
                         "type": "string",
-                        "description": "The retention policy to apply over and above max_msgs, max_bytes and max_age\n"
+                        "description": "The retention policy to apply over and above max*msgs, max*bytes and max_age\n"
                     },
                     "sources": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/jetstream:index/StreamSource:StreamSource"
                         },
-                        "description": "Specifies a list of streams to source into this one\n"
+                        "description": "The subject transform source\n"
                     },
                     "storage": {
                         "type": "string",
@@ -1431,7 +1431,7 @@
                     },
                     "subjectTransform": {
                         "$ref": "#/types/jetstream:index/StreamSubjectTransform:StreamSubjectTransform",
-                        "description": "Subject transform to apply to matching messages\n"
+                        "description": "The subject filtering sources and associated destination transforms\n"
                     },
                     "subjects": {
                         "type": "array",
