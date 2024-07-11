@@ -2,27 +2,6 @@
 
 Generated using the Pulumi Terraform Bridge against [terraform-provider-jetstream](https://github.com/Triple-Whale/terraform-provider-jetstream).
 
-### Dev
-
-```
-<repo base> make install
-<example dir> export TF_LOG=WARN
-<example dir> rm .terraform.lock.hcl
-<example dir> terraform init
-<example dir> terraform apply
-```
-
-### Publish
-
-```
-commit changes
-git tag v1.X
-git push
-git push --tags
-```
-
-## pulumi-jetstream
-
 ### Build
 
 ```
