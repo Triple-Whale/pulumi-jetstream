@@ -1,6 +1,6 @@
 {
   "name": "@tw/pulumi-jetstream",
-  "version": "v0.0.1",
+  "version": "v0.0.2",
   "description": "A Pulumi package for creating and managing jetstream cloud resources.",
   "keywords": [
     "triplewhale",
